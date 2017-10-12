@@ -14,7 +14,7 @@ public class Sphere extends ShapeInSpace implements ExtendedMovable, Scalable {
 
     @Override
     public void scale(double value) {
-        this.radius *= radius;
+        this.radius *= value;
     }
 
     @Override
