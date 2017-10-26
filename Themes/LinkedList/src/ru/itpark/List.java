@@ -1,6 +1,6 @@
 package ru.itpark;
 
-public interface List {
+public interface List extends Iterable {
   /**
    * Добавление в конец
    * @param element

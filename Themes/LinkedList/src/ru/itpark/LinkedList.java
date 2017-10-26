@@ -89,6 +89,28 @@ public class LinkedList implements List {
     return count;
   }
 
+  @Override
+  public Iterator iterator() {
+    return new LinkedListIterator();
+  }
+
+  private class LinkedListIterator implements Iterator {
+
+    private Node currentNode = head;
+
+    @Override
+    public Object next() {
+      Object element = currentNode.value;
+      currentNode = currentNode.next;
+      return element;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return currentNode != null;
+    }
+  }
+
   private static class Node {
     // значение, которое хранит узел
     Object value;

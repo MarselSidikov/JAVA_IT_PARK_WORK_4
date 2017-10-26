@@ -11,8 +11,13 @@ public class Main {
         linkedList.add("Fifth");
         linkedList.addToBegin("Zeroth");
 
-        System.out.println(linkedList.get(2));
-        System.out.println(linkedList.get(0));
-        int i = 0;
+//        for (int i = 0; i < linkedList.size(); i++) {
+//            System.out.println(linkedList.get(i));
+//        }
+
+        Iterator iterator = linkedList.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 }

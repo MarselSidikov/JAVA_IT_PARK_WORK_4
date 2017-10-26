@@ -1,6 +1,7 @@
 package ru.itpark;
 
 public class ArrayList implements List {
+
   @Override
   public void add(Object element) {
 
@@ -29,5 +30,10 @@ public class ArrayList implements List {
   @Override
   public int size() {
     return 0;
+  }
+
+  @Override
+  public Iterator iterator() {
+    return null;
   }
 }
