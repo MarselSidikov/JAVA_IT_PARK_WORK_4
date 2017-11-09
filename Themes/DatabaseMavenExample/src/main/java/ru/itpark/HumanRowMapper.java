@@ -8,7 +8,6 @@ import java.sql.SQLException;
 // реадизация интерфейса RowMapper, назначение которого -
 // получить по строке ответа из БД объект
 public class HumanRowMapper implements RowMapper<Human> {
-  @Override
   public Human mapRow(ResultSet resultSet, int i) throws SQLException {
     return new Human(
         resultSet.getInt("age"),
