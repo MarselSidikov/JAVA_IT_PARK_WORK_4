@@ -3,7 +3,7 @@ package ru.itpark;
 import java.sql.*;
 import java.util.Scanner;
 
-public class Main {
+public class MainPureJdbc {
 
   private static final String URL = "jdbc:postgresql://localhost:5432/sidikov_db";
   private static final String USER = "postgres";
