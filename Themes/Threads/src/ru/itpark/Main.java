@@ -3,13 +3,26 @@ package ru.itpark;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//      System.out.println(Thread.currentThread());
-//      System.out.println("Привет, я немного торможу");
-//      Thread.sleep(10000);
-//      System.out.println("Все, отпустило.");
+        ChickenThread chickenThread = new ChickenThread();
+        EggThread eggThread = new EggThread();
 
-      ThreadGroup group = new ThreadGroup("моя группа");
-      MyThread thread = new MyThread(group);
-      thread.start();
+        chickenThread.start();
+        eggThread.start();
+
+        chickenThread.join();
+        eggThread.join();
+
+        DinosaurThread dinosaurThread = new DinosaurThread();
+        Thread dinoThread = new Thread(dinosaurThread);
+        dinoThread.start();
+
+        new Thread(() -> {
+          System.out.println("Марсель");
+          System.out.println("Мега Марсель");
+        }).start();
+
+        for (int i = 0; i < 100; i++) {
+          System.out.println("Человек");
+        }
     }
 }
