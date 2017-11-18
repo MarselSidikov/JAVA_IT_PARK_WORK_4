@@ -2,6 +2,8 @@ package ru.itpark;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.util.List;
+
 public class Main {
 
   private static final String URL = "jdbc:postgresql://localhost:5432/sidikov_db";
@@ -15,17 +17,13 @@ public class Main {
     dataSource.setUsername(USER);
     dataSource.setPassword(PASSWORD);
 
-    HumansDao humansDao = new HumansDaoJdbcTemplateImpl(dataSource);
+    UsersDao usersDao = new UsersDaoJdbcTemplateImpl(dataSource);
 
-    HumanService service = new HumanService(humansDao);
+    HumanService service = new HumanService(usersDao);
 
-    Human human = Human.builder()
-        .age(55)
-        .citizen("Америка")
-        .name("Авраам")
-        .build();
+    List<User> users = usersDao.findAll();
 
-    service.registerUser(human);
+    int i = 0;
 
   }
 }

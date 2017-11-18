@@ -2,24 +2,24 @@ package ru.itpark;
 
 public class HumanService {
 
-  private HumansDao humansDao;
+  private UsersDao usersDao;
 
-  public HumanService(HumansDao humansDao) {
-    this.humansDao = humansDao;
+  public HumanService(UsersDao usersDao) {
+    this.usersDao = usersDao;
   }
 
-  public void registerUser(Human user) {
+  public void registerUser(User user) {
     // смотрим, нет ли человека с таким именем,
     String name = user.getName();
 
-    Human existingHuman = humansDao.findOneByName(name);
+    User existingUser = usersDao.findOneByName(name);
 
-    if (existingHuman != null) {
+    if (existingUser != null) {
       // если есть - выбрасываем ошибку, если нет - сохраняем
       throw new IllegalArgumentException("Already exist");
     }
 
-    humansDao.save(user);
+    usersDao.save(user);
 
   }
 }
