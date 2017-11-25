@@ -3,7 +3,7 @@ package ru.itpark;
 public class Main {
 
   public static void main(String[] args) throws InterruptedException {
-      ThreadPool pool = new ThreadPool(2);
+      ThreadPool pool = new ThreadPool(3);
 
       Runnable sayHello = () -> {
         for (int i = 0; i < 1000; i++) {
