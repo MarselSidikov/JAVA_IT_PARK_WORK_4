@@ -3,16 +3,10 @@ package ru.itpark;
 public class Main {
 
     public static void main(String[] args) {
-      Message messageHello = new MessageHelloImpl("Marsel");
-      Message messageBye = new MessageByeImpl("Ruslan");
+      ComponentsFactory factory = new ComponentsFactory();
 
-      MessageRenderer rendererSystemOut =
-          new MessageRendererSystemOutImpl(messageBye);
+      MessageRenderer renderer = factory.messageRenderer();
 
-      MessageRenderer rendererSystemErr =
-          new MessageRendererSystemErrImpl(messageHello);
-
-      rendererSystemOut.render();
-      rendererSystemErr.render();
+      renderer.render();
     }
 }
