@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="renderer" class="ru.itpark.MessageRendererSystemErrImpl">
+        <constructor-arg ref="message"/>
+    </bean>
+
+    <bean id="message" class="ru.itpark.MessageByeImpl">
+        <constructor-arg name="text" value="Marsel"/>
+        <constructor-arg name="smile" value=":)"/>
+        <property name="suffix" value="..."/>
+    </bean>
+</beans>
