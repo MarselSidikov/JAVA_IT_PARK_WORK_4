@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="usersDao" class="ru.itpark.HumansDaoJdbcTemplateImpl">
+       <constructor-arg name="dataSource" ref="dataSourceSidikovDb2"/>
+    </bean>
+
+    <bean id="dataSourceSidikovDb" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="jdbc:postgresql://localhost:5432/sidikov_db"/>
+        <property name="username" value="postgres"/>
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="password" value="Zaq12wsx"/>
+    </bean>
+
+    <bean id="dataSourceSidikovDb2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="jdbc:postgresql://localhost:5432/sidikov2_db"/>
+        <property name="username" value="postgres"/>
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="password" value="Zaq12wsx"/>
+    </bean>
+</beans>
