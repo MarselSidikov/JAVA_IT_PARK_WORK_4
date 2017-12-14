@@ -43,10 +43,6 @@ public class HumansDaoJdbcTemplateImpl implements HumansDao {
 
     public HumansDaoJdbcTemplateImpl(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
-        this.template.update("CREATE TABLE if NOT EXISTS owner(id SERIAL PRIMARY KEY," +
-                "age INTEGER," +
-                "name VARCHAR(20)," +
-                "citizen VARCHAR (20))");
     }
 
     public List<Human> findAllByAge(int age) {

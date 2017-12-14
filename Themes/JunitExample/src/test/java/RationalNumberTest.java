@@ -13,4 +13,9 @@ public class RationalNumberTest {
 
     Assert.assertEquals(expected, actual);
   }
+
+  @Test(expected = ArithmeticException.class)
+  public void createTest() {
+    RationalNumber.create(13, 0);
+  }
 }
