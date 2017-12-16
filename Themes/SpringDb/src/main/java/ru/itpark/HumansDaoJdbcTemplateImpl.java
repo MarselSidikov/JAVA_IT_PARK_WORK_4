@@ -4,6 +4,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class HumansDaoJdbcTemplateImpl implements HumansDao {
@@ -32,14 +34,18 @@ public class HumansDaoJdbcTemplateImpl implements HumansDao {
 
     private JdbcTemplate template;
 
-    private RowMapper<Human> rowMapper = (resultSet, rowNum) -> {
+    private RowMapper<Human> rowMapper = new RowMapper<Human>() {
+      @Override
+      public Human mapRow(ResultSet rs, int rowNum) throws SQLException {
         return Human.builder()
-                .id(resultSet.getLong("id"))
-                .age(resultSet.getInt("age"))
-                .name(resultSet.getString("name"))
-                .citizen(resultSet.getString("citizen"))
-                .build();
+            .id(rs.getLong("id"))
+            .age(rs.getInt("age"))
+            .name(rs.getString("name"))
+            .citizen(rs.getString("citizen"))
+            .build();
+      }
     };
+
 
     public HumansDaoJdbcTemplateImpl(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
