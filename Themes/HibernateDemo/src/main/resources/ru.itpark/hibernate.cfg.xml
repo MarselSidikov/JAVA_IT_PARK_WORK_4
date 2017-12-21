@@ -9,10 +9,9 @@
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">Zaq12wsx</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
-
+        <property name="show_sql">true</property>
         <mapping resource="ru.itpark/User.hbm.xml"/>
-
-
+        <mapping resource="ru.itpark/Car.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

@@ -11,5 +11,12 @@
         <property name="age"/>
         <property name="citizen"/>
         <property name="name"/>
+
+        <set name="cars" fetch="join" lazy="false">
+            <key>
+                <column name="owner_id"/>
+            </key>
+            <one-to-many class="ru.itpark.models.Car"/>
+        </set>
     </class>
 </hibernate-mapping>
