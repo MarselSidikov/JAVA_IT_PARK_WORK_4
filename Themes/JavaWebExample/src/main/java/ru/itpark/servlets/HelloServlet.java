@@ -1,4 +1,4 @@
-package ru.itpark;
+package ru.itpark.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,5 +14,6 @@ public class HelloServlet extends HttpServlet {
         String name = req.getParameter("name");
         PrintWriter writer = resp.getWriter();
         writer.write("<h1>Hello, " + name + "</h1>");
+        writer.write("<h2>Glad to see you!</h2>");
     }
 }
