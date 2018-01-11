@@ -3,6 +3,7 @@ package ru.itpark.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,4 +24,9 @@ public class User {
   private String name;
   private int age;
   private String citizen;
+
+  // https://en.wikibooks.org/wiki/Java_Persistence/ManyToMany
+
+  @ManyToMany(mappedBy = "owners")
+  private List<Car> cars;
 }

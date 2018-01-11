@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class UsersJspServlet extends HttpServlet {
+public class CarsServlet extends HttpServlet {
 
     private UsersRepository usersRepository;
 
@@ -25,28 +25,12 @@ public class UsersJspServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> users = usersRepository.findAll();
 
-        req.setAttribute("users", users);
+        long userId = Long.parseLong(req.getParameter("id"));
+        User user = usersRepository.find(userId);
 
-        req.getRequestDispatcher("/jsp/users.jsp").forward(req, resp);
-    }
+        req.setAttribute("cars", user.getCars());
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        String name = req.getParameter("name");
-        String citizen = req.getParameter("citizen");
-        int age = Integer.parseInt(req.getParameter("age"));
-
-        User user = User.builder()
-                .name(name)
-                .age(age)
-                .citizen(citizen)
-                .build();
-
-        usersRepository.save(user);
-
-        resp.sendRedirect("/users_as_jsp");
+        req.getRequestDispatcher("/jsp/cars.jsp").forward(req, resp);
     }
 }

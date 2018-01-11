@@ -1,4 +1,4 @@
-package ru.itpark.servlets;
+package ru.itpark.servlets.simple;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

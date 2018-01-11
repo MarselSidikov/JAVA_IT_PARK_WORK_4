@@ -1,4 +1,4 @@
-package ru.itpark.servlets;
+package ru.itpark.servlets.simple;
 
 import ru.itpark.models.User;
 import ru.itpark.repository.UsersRepository;

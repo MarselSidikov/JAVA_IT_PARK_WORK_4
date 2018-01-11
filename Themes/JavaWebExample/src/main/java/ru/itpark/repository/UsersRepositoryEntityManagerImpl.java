@@ -26,4 +26,9 @@ public class UsersRepositoryEntityManagerImpl implements UsersRepository {
         entityManager.persist(model);
         entityManager.getTransaction().commit();
     }
+
+    @Override
+    public User find(long userId) {
+        return entityManager.find(User.class, userId);
+    }
 }

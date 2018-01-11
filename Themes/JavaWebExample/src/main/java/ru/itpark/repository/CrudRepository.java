@@ -8,4 +8,5 @@ public interface CrudRepository<T> {
     List<T> findAll();
     void save(T model);
 
+    T find(long userId);
 }
