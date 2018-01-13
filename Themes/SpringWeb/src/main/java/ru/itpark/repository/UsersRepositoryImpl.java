@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.itpark.models.User;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
+public class UsersRepositoryImpl implements UsersRepository {
 
   //language=SQL
   private static final String SQL_SELECT_ALL_USERS =
@@ -17,6 +20,9 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
   @Autowired
   private JdbcTemplate jdbcTemplate;
+
+  @PersistenceContext
+  private EntityManager entityManager;
 
   @Override
   public List<User> findAll() {
@@ -29,8 +35,9 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
   }
 
   @Override
+  @Transactional
   public void save(User model) {
-
+    entityManager.persist(model);
   }
 
   @Override

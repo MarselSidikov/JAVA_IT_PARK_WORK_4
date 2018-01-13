@@ -10,6 +10,7 @@
 
     <properties>
         <spring.version>4.3.13.RELEASE</spring.version>
+        <spring.jpa.version>1.11.9.RELEASE</spring.jpa.version>
         <lombok.version>1.16.18</lombok.version>
         <hibernate.version>5.2.12.Final</hibernate.version>
         <postgresql.version>42.1.4</postgresql.version>
@@ -57,6 +58,11 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>${hikari.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.jpa.version}</version>
         </dependency>
     </dependencies>
 
