@@ -21,7 +21,8 @@ public class UsersRepositoryImpl implements UsersRepository {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @PersistenceContext
+  @PersistenceContext // аннотация не спринга, а JPA, но Spring умеет с ней работать,
+  // он найдет фабрику Entity managerov и возьмет у него энтитименеджер
   private EntityManager entityManager;
 
   @Override
@@ -35,7 +36,7 @@ public class UsersRepositoryImpl implements UsersRepository {
   }
 
   @Override
-  @Transactional
+  @Transactional // спринг сам начнет транзакцию и закончит ее
   public void save(User model) {
     entityManager.persist(model);
   }

@@ -4,6 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--Делаем доступными переменные из application.properties  -->
     <context:property-placeholder location="classpath:ru.itpark/application.properties"/>
 
     <context:annotation-config/>
@@ -23,5 +24,6 @@
         <property name="password" value="${datasource.password}"/>
     </bean>
 
+    <!--Устанавливаем связь между xml конфигурацией и java-конфигурацией -->
     <bean id="springJavaConfig" class="ru.itpark.config.SpringConfig"/>
 </beans>

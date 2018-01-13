@@ -21,11 +21,12 @@ import javax.persistence.Persistence;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration
-@ComponentScan(basePackages = "ru.itpark")
+@Configuration // говорим, что класс является конфигурационным классом Spring-а
+@ComponentScan(basePackages = "ru.itpark") // говорим спрингу, где следует искать компоненты
 @EnableTransactionManagement
 public class SpringConfig {
 
+  // @Value - позволяет вытаскавать настройки из properties-файла
   @Value("${hibernate.dialect}")
   private String hibernateDialect;
 
@@ -47,22 +48,30 @@ public class SpringConfig {
 
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    // создаем фабрику менеджеров сущностей
     LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+    // говорим ей, какой datasource использовать
     em.setDataSource(dataSource);
+    // говорим, какие настройки использовать
     em.setJpaProperties(hibernateProperties());
+    // говорим, где искать проаннотированные модели
     em.setPackagesToScan(new String[] { "ru.itpark.models"});
+    // говорим, что работаем с хибернейнтом
     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     em.setJpaVendorAdapter(vendorAdapter);
+    // помещаем фабрику в контейнер бинов спринга
     return em;
   }
 
-  @Bean
+  @Bean // бин для менеджера транзакций
   public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
     JpaTransactionManager transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(emf);
     return transactionManager;
   }
 
+  // просто метод который возвращает объект с настройками
+  // для хибернейта
   public Properties hibernateProperties() {
     Properties properties = new Properties();
     properties.setProperty("hibernate.dialect", hibernateDialect);
