@@ -24,6 +24,13 @@
         <property name="password" value="${datasource.password}"/>
     </bean>
 
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean name="/users" class="ru.itpark.controllers.UsersController"/>
+
     <!--Устанавливаем связь между xml конфигурацией и java-конфигурацией -->
     <bean id="springJavaConfig" class="ru.itpark.config.SpringConfig"/>
 </beans>
