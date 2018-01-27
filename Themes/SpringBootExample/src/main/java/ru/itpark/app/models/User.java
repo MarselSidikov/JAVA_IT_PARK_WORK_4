@@ -25,8 +25,11 @@ public class User {
 
   private LocalDateTime registrationDate;
 
-  @Enumerated(EnumType.STRING)
+  @Enumerated(EnumType.ORDINAL)
   private State state;
+
+  @Enumerated(EnumType.STRING)
+  private Role role;
 
   private String confirmString;
 }

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.itpark.app.forms.RegistrationForm;
+import ru.itpark.app.models.Role;
 import ru.itpark.app.models.State;
 import ru.itpark.app.models.User;
 import ru.itpark.app.repositories.UsersRepository;
@@ -13,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-@Component
+@Service
 public class RegistrationServiceImpl implements RegistrationService {
 
   @Autowired
@@ -35,6 +37,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         .hashPassword(passwordEncoder.encode(form.getPassword()))
         .registrationDate(LocalDateTime.now())
         .state(State.NOT_CONFIRMED)
+        .role(Role.USER)
         .confirmString(confirmString)
         .build();
 

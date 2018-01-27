@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = SecurityAutoConfiguration.class)
 @ComponentScan(basePackages = "ru.itpark")
 @EntityScan(basePackages = "ru.itpark.app.models", basePackageClasses = Jsr310JpaConverters.class)
 public class Main {

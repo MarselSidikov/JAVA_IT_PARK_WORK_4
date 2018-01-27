@@ -1,15 +1,16 @@
 package ru.itpark.app.controllers;
 
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.itpark.app.forms.RegistrationForm;
 import ru.itpark.app.repositories.UsersRepository;
 import ru.itpark.app.services.RegistrationService;
+
+import java.util.Optional;
 
 @Controller
 public class RegistrationController {
@@ -20,6 +21,15 @@ public class RegistrationController {
   @GetMapping("/signUp")
   public String getSignUpPage() {
     return "sign_up";
+  }
+
+  @GetMapping("/signIn")
+  public String getSignInPage(@ModelAttribute("model") ModelMap model,
+                              @RequestParam(value = "error", required = false) String error) {
+    if (error != null) {
+      model.addAttribute("error", true);
+    }
+    return "sign_in";
   }
 
   @PostMapping("/signUp")
