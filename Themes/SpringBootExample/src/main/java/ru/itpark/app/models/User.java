@@ -3,6 +3,7 @@ package ru.itpark.app.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,4 +33,9 @@ public class User {
   private Role role;
 
   private String confirmString;
+
+  private String name;
+  private String lastName;
+
+  private LocalDate birthDate;
 }
