@@ -14,7 +14,7 @@
 <div>
     <h2>${model.user.email}</h2>
     <input type="file" name="file" id="fileInput" placeholder="Файл аватара"/>
-    <button onclick="fileUpload(document.getElementById('fileInput')['files'][0])">Загрузить</button>
+    <button onclick="imageUpload(document.getElementById('fileInput')['files'][0])">Загрузить</button>
     <br>
     <input type="text" id="name" <#if model.user.name??>
         value="${model.user.name}"
@@ -37,6 +37,9 @@
         document.getElementById('birthDate').value
     )">Сохранить
     </button>
+    <div id="avatar">
+
+    </div>
 </div>
 
 <a href="/logout">Выход</a>

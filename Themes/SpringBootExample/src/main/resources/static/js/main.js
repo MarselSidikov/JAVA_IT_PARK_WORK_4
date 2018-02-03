@@ -17,16 +17,20 @@ function updateUser(name, lastName, birthDate) {
         }
     })
 }
-function fileUpload(file) {
+function imageUpload(file) {
     var formData = new FormData();
     formData.append("file", file);
     $.ajax({
         type: "POST",
-        url: "/files",
+        url: "/images",
         data: formData,
         contentType: false,
         processData: false,
         success: function (data) {
+            $("#avatar").html("<img width='100' height='100' src='/files/" +
+                data + "'/>");
+        },
+        error: function (data) {
             alert(data)
         }
     });
