@@ -27,7 +27,7 @@ function imageUpload(file) {
         contentType: false,
         processData: false,
         success: function (data) {
-            $("#avatar").html("<img width='100' height='100' src='/files/" +
+            $("#avatar").html("<img class=\"img-circle\" width='100' height='100' src='/files/" +
                 data + "'/>");
         },
         error: function (data) {
