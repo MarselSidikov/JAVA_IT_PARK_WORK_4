@@ -1,6 +1,7 @@
 package ru.itpark.app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,10 +15,11 @@ public class FilesStorageController {
   @Autowired
   private FilesStorageService storageService;
 
-  @PostMapping(value = "/images")
+  @PostMapping(value = "/images/avatar")
   @ResponseBody
-  public String handleImageUpload(@RequestParam("file") MultipartFile file) {
-    return storageService.saveImage(file);
+  public String handleImageUpload(@RequestParam("file") MultipartFile file,
+                                  Authentication authentication) {
+    return storageService.saveImage(authentication, file);
   }
 
   @PostMapping(value = "/files")

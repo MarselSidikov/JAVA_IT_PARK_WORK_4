@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <title>Профиль</title>
 </head>
+${model.user}
 <body>
 <h1>Ваш профиль</h1>
 <div>
@@ -40,7 +41,9 @@
     )">Сохранить
     </button>
     <div id="avatar">
-
+        <#if model.user.imageUrl??>
+            <img class="img-circle" width='100' height='100' src="${model.user.imageUrl}">
+        </#if>
     </div>
 </div>
 

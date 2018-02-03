@@ -3,10 +3,13 @@ package ru.itpark.app.services;
 import lombok.SneakyThrows;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itpark.app.models.FileInfo;
+import ru.itpark.app.models.User;
 import ru.itpark.app.repositories.FileInfoRepository;
+import ru.itpark.app.repositories.UsersRepository;
 import ru.itpark.app.utils.FilesStorageUtil;
 import ru.itpark.app.utils.ImagesFilesValidator;
 
@@ -27,6 +30,9 @@ public class FilesStorageServiceImpl implements FilesStorageService {
   @Autowired
   private ImagesFilesValidator imagesFilesValidator;
 
+  @Autowired
+  private UsersRepository usersRepository;
+
   @Override
   public String saveFile(MultipartFile file) {
     FileInfo fileInfo = filesStorageUtil.convertFromMultipart(file);
@@ -46,8 +52,25 @@ public class FilesStorageServiceImpl implements FilesStorageService {
   }
 
   @Override
-  public String saveImage(MultipartFile file) {
+  public String saveImage(Authentication authentication, MultipartFile file) {
+    // проверяем файл на валидность - картинка или нет
     imagesFilesValidator.validate(file);
-    return saveFile(file);
+    // создаем модель на основе мультипарта
+    FileInfo fileInfo = filesStorageUtil.convertFromMultipart(file);
+    // сохраняем в бд информацию о файле
+    fileInfoRepository.save(fileInfo);
+    // копируем файл на диск
+    filesStorageUtil.copyToStorage(file, fileInfo.getStorageFileName());
+    // находим текущего пользователя по авторизации
+    User user = usersRepository.findByEmail(authentication.getName()).get();
+    if (user.getImage() != null) {
+      user.getImage().setUser(null);
+      fileInfoRepository.save(user.getImage());
+    }
+    // кладем эту картинку пользователю
+    fileInfo.setUser(user);
+    fileInfoRepository.save(fileInfo);
+    // возвращаем имя файла
+    return fileInfo.getStorageFileName();
   }
 }

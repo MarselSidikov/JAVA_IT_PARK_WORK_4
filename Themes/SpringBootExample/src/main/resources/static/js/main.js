@@ -22,7 +22,7 @@ function imageUpload(file) {
     formData.append("file", file);
     $.ajax({
         type: "POST",
-        url: "/images",
+        url: "/images/avatar",
         data: formData,
         contentType: false,
         processData: false,

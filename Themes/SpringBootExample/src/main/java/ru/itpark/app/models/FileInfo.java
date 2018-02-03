@@ -2,10 +2,7 @@ package ru.itpark.app.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -24,4 +21,8 @@ public class FileInfo {
   private long size;
   private String type;
   private String url;
+
+  @OneToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 }

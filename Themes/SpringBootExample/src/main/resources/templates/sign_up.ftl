@@ -8,5 +8,8 @@
     <input type="password" name="repassword" placeholder="Повторите">
     <input type="submit">
 </form>
+<div id="vk_form">
+
+</div>
 </body>
 </html>

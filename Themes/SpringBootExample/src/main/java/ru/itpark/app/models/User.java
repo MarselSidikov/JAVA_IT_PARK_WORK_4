@@ -38,4 +38,7 @@ public class User {
   private String lastName;
 
   private LocalDate birthDate;
+
+  @OneToOne(mappedBy = "user")
+  private FileInfo image;
 }

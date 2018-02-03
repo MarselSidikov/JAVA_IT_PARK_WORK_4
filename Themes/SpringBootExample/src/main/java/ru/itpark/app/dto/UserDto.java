@@ -13,6 +13,7 @@ public class UserDto {
   private String name;
   private String lastName;
   private String birthDate;
+  private String imageUrl;
 
   public static UserDto from(User model) {
     UserDto result = UserDto.builder()
@@ -23,6 +24,10 @@ public class UserDto {
 
     if (model.getBirthDate() != null) {
       result.setBirthDate(model.getBirthDate().toString());
+    }
+
+    if (model.getImage() != null) {
+      result.imageUrl = "/files/" + model.getImage().getStorageFileName();
     }
 
     return result;
